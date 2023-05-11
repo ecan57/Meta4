@@ -42,5 +42,6 @@ public class PauseMenuScript : MonoBehaviour
         SceneManager.LoadScene(0);
         Time.timeScale = 1; //sayýlar oyunun zamna akýþýyla ilgili hareketler yavaþlar
         LevelManager.canMove = true;
+        ScoreManagerScript.score = 0;
     }
 }

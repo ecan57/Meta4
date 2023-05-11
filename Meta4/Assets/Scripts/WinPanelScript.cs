@@ -10,7 +10,7 @@ public class WinPanelScript : MonoBehaviour
     [SerializeField] TextMeshProUGUI scoreText;
     private void Update()
     {
-        scoreText.text = "Score \n " + ScoreManagerScript.score.ToString();
+        scoreText.text = "Score : " + ScoreManagerScript.score.ToString();
     }
     public void NextLevel() //ismi restrttý deðiþtirdik
     {

@@ -7,8 +7,8 @@ public class Jump : MonoBehaviour
     private Rigidbody2D rb;
     [SerializeField] private float jumpPower; //sadece scriptin olduðu yerden eriþilebilmesini saðlýyor inspectada deðiþtirilebilir hale getiriirli
     [SerializeField] float radius;
-    [SerializeField] float gravityScale;
-    [SerializeField] float fallGravityScale;
+    public static float gravityScale = 1; //heryerden ulþabilmek için public static yaptýk //seriliezed field kaldýrdýðýmýz için unityde göremezdik o yüzden burada deðer verdik
+    public static float fallGravityScale = 15; //heryerden ulþabilmek için public static yaptýk //seriliezed field kaldýrdýðýmýz için unityde göremezdik o yüzden burada deðer verdik
     [SerializeField] Transform feetPos;
     [SerializeField] LayerMask layerMask;
     [SerializeField] SoundManager soundManager;
@@ -44,6 +44,10 @@ public class Jump : MonoBehaviour
     }
     void JumpAction()
     {
+        if(Movement.isDashing)
+        {
+            return;
+        }
         if (Input.GetButtonDown("Jump") && IsGrounded() && LevelManager.canMove)
         {
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);

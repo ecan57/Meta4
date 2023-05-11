@@ -124,8 +124,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 10
+  horizantalMove: 0
   gameoverText: {fileID: 0}
   playerYBoundry: -10
+  dashAmount: 60
+  dashCoolDown: 1
+  dashTime: 0.2
 --- !u!114 &7627799211812205911
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -140,8 +144,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jumpPower: 10
   radius: 0.3
-  gravityScale: 1
-  fallGravityScale: 10
   feetPos: {fileID: 7627799213180131931}
   layerMask:
     serializedVersion: 2

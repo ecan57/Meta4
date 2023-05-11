@@ -9,6 +9,7 @@ public class Movement : MonoBehaviour
     private SpriteRenderer spriteRenderer;
 
     public float moveSpeed;
+    [SerializeField] float horizantalMove;
     [SerializeField] GameObject gameoverText;
     [SerializeField] float playerYBoundry;
     LevelManager levelManager;
@@ -16,6 +17,12 @@ public class Movement : MonoBehaviour
     UIManager uiManager;
     Delay delayScript;
     PlayerHealth playerHealth;
+
+    public static bool canDash = true;
+    public static bool isDashing = false;
+    [SerializeField] float dashAmount;
+    [SerializeField] float dashCoolDown;
+    [SerializeField] float dashTime;
     private void Awake()
     {
         levelManager = GameObject.Find("Level Manager").GetComponent<LevelManager>();
@@ -35,11 +42,20 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.LeftShift) && canDash && horizantalMove != 0)
+        {
+            StartCoroutine(Dash());
+        }
+        horizantalMove = Input.GetAxis("Horizontal");
         MovementAction();
         PlayerDestroyer();
     }
     void MovementAction()
     {
+        if(isDashing)
+        {
+            return;
+        }
         if(LevelManager.canMove)
         {
             float horizontalMove = Input.GetAxis("Horizontal");
@@ -71,10 +87,33 @@ public class Movement : MonoBehaviour
                 delayScript.StartDelayTime();
             }
             Destroy(gameObject);
+            Movement.Cancel();
             soundManager.DeadByFallSound();
             //uiManager.GetComponent<Canvas>().enabled = true; //playerHealt.Lives ekleyince kaldýrdýk
             //levelManager.RespawnPlayer(); //DelayTime içinde yazdýðýmýzdan bunu kapattýk
         }
+    }
+    IEnumerator Dash() //fýrlama
+    {
+        canDash = false;
+        isDashing = true;
+        rb.gravityScale = 0;
+        Jump.fallGravityScale = 0;
+        rb.velocity = new Vector2(horizantalMove * dashAmount, 0); //dash iþlemi yapýlýr
+        yield return new WaitForSeconds(dashTime); //dashtime kadar bekle aþaðýdaki kodlara geç
+        rb.gravityScale = 1;
+        Jump.fallGravityScale = 15;
+        isDashing = false;
+        yield return new WaitForSeconds(dashCoolDown);
+        Debug.Log("DASHING");
+        canDash = true;
+
+    }
+    public static void Cancel()
+    {
+        canDash = true;
+        isDashing = false;
+        Jump.fallGravityScale = 15;
     }
 
 }

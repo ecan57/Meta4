@@ -23,6 +23,7 @@ public class ScoreManagerScript : MonoBehaviour
     #endregion
 
     [SerializeField] TextMeshProUGUI scoreText;
+    [SerializeField] TextMeshProUGUI highScoreText;
     
     public static int score; //=0 verilebilir
     public static int highScore; //=0 verilebilir
@@ -30,7 +31,7 @@ public class ScoreManagerScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        scoreText.text = "Score \n " + score.ToString();
+        scoreText.text = "Score : " + score.ToString();
     }
 
     // Update is called once per frame
@@ -41,6 +42,11 @@ public class ScoreManagerScript : MonoBehaviour
     public void AddPoint(int value)
     {
         score += value;
-        scoreText.text = "Score \n " + score.ToString();
+        scoreText.text = "Score : " + score.ToString();
+
+        if(highScore < score)
+        {
+            PlayerPrefs.SetInt("High Score", score); //SEtInt deðiþkenlerimiz int olduðu için kullanýyoruz //eðer highcore scoredan küçükse score u "High Score" yap
+        }
     }
 }
