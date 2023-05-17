@@ -12,6 +12,10 @@ public class Jump : MonoBehaviour
     [SerializeField] Transform feetPos;
     [SerializeField] LayerMask layerMask;
     [SerializeField] SoundManager soundManager;
+    [SerializeField] float startJumpTime;
+    float jumpTime;
+    bool isJumping;
+    bool doubleJump;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,8 +54,33 @@ public class Jump : MonoBehaviour
         }
         if (Input.GetButtonDown("Jump") && IsGrounded() && LevelManager.canMove)
         {
-            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            isJumping = true;
+            doubleJump = true;
+            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse); //impulse: bi anda anýnda uygula
+            jumpTime = startJumpTime;
             soundManager.JumpSound();
+        }
+        if(Input.GetButtonDown("Jump") && doubleJump)
+        {
+            rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse);
+            doubleJump = false;
+        }
+        if (Input.GetButton("Jump") && isJumping)
+        {
+            if (jumpTime > 0)
+            {
+                //rb.velocity = Vector2.up * jumpPower;
+                rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Force); //force: yavaþ yavaþ uygula
+                jumpTime -= Time.deltaTime;
+            }
+            else
+            {
+                isJumping = false;
+            }
+        }
+        if(Input.GetButtonUp("Jump"))
+        {
+            isJumping = false;
         }
     }
 }

@@ -17,12 +17,14 @@ public class Movement : MonoBehaviour
     UIManager uiManager;
     Delay delayScript;
     PlayerHealth playerHealth;
+    TrailRenderer tr;
 
     public static bool canDash = true;
     public static bool isDashing = false;
     [SerializeField] float dashAmount;
     [SerializeField] float dashCoolDown;
     [SerializeField] float dashTime;
+    public static bool dashed;
     private void Awake()
     {
         levelManager = GameObject.Find("Level Manager").GetComponent<LevelManager>();
@@ -30,6 +32,7 @@ public class Movement : MonoBehaviour
         delayScript = GameObject.Find("Level Manager").GetComponent<Delay>();
         uiManager = GameObject.Find("UI Manager").GetComponent<UIManager>();
         playerHealth = GameObject.Find("Level Manager").GetComponent<PlayerHealth>();
+        tr = GetComponent<TrailRenderer>();
     }
     // Start is called before the first frame update
     void Start()
@@ -97,14 +100,18 @@ public class Movement : MonoBehaviour
     {
         canDash = false;
         isDashing = true;
+        dashed = true;
         rb.gravityScale = 0;
         Jump.fallGravityScale = 0;
+        tr.emitting = true;
         rb.velocity = new Vector2(horizantalMove * dashAmount, 0); //dash iþlemi yapýlýr
         yield return new WaitForSeconds(dashTime); //dashtime kadar bekle aþaðýdaki kodlara geç
         rb.gravityScale = 1;
         Jump.fallGravityScale = 15;
         isDashing = false;
+        tr.emitting = false;
         yield return new WaitForSeconds(dashCoolDown);
+        dashed = false;
         Debug.Log("DASHING");
         canDash = true;
 
@@ -113,6 +120,7 @@ public class Movement : MonoBehaviour
     {
         canDash = true;
         isDashing = false;
+        dashed = false;
         Jump.fallGravityScale = 15;
     }
 

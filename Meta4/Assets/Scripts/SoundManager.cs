@@ -12,6 +12,7 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip attackEnemySound;
     [SerializeField] AudioClip winSound;
     [SerializeField] AudioClip runDoorSound;
+    //[SerializeField] public AudioClip[] sounds; //bunu sen yap
 
     //#region Singleton
     public static SoundManager instance;//singleton
