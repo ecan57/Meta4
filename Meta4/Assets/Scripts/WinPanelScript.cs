@@ -18,6 +18,7 @@ public class WinPanelScript : MonoBehaviour
         scoreText.text = scorePoints.ToString();
         SceneManager.LoadScene(1);
         LevelManager.canMove = true;
+        LevelManager.knifeStop = false;
     }
 
     public void Quit()

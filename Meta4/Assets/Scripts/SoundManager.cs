@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
@@ -12,40 +13,47 @@ public class SoundManager : MonoBehaviour
     [SerializeField] AudioClip attackEnemySound;
     [SerializeField] AudioClip winSound;
     [SerializeField] AudioClip runDoorSound;
-    //[SerializeField] public AudioClip[] sounds; //bunu sen yap
+    public AudioClip[] sounds; //bunu sen yap
 
-    //#region Singleton
+    #region Singleton
     public static SoundManager instance;//singleton
 
-    public void Awake()
+    private void Awake()
     {
-        if (instance != null)
+        if (instance == null)
         {
-            Destroy(gameObject);
-            Debug.Log("Sahnede Fazla Sound Var");
+            instance = this;
         }
         else
         {
-            instance = this;
+            Destroy(gameObject);
+            Debug.Log("Sahnede Fazla Sound Var");
         } 
     }
-    //#endregion
-    // Start is called before the first frame update
+    #endregion
+
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void PlayAudio(AudioClip clip)
     {
-        
-    }
-    public void JumpSound()
+        audioSource.PlayOneShot(clip);
+    } //kýsa yöntem için ikinci seçenek alttaki en iyi seçenek
+    
+    public void PalyWithIndex(int index)
     {
-        audioSource.PlayOneShot(jumpSound);
-        Debug.Log("JUMP");
+        audioSource.PlayOneShot(sounds[index]);
+        Debug.Log(index + ". index çalýyor");
     }
+
+
+    //public void JumpSound()
+    //{
+    //    audioSource.PlayOneShot(jumpSound);
+    //    Debug.Log("JUMP");
+    //}
     public void LandSound()
     {
         audioSource.PlayOneShot(landSound);

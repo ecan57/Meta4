@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7859f20e21be23a4f9541ae932260fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 5
+  jumpPower: 3
   radius: 0.3
   feetPos: {fileID: 7627799213180131931}
   layerMask:

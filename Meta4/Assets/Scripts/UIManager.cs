@@ -25,10 +25,12 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         canvas.enabled = false;
         ScoreManagerScript.score = 0;
+        LevelManager.knifeStop = false;
     }
     public void MenuButton()
     {
         SceneManager.LoadScene(0);
         ScoreManagerScript.score = 0; //score 0 lamak için yaptýk
+        LevelManager.knifeStop = false;
     }
 }

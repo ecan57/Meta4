@@ -9,13 +9,30 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] Image[] playerHealthIcons;
     [SerializeField] int playerLifeCount = 3;
     Delay delay;
+
+    #region Singleton
+    public static PlayerHealth instance;//singleton
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+            Debug.Log("");
+        }
+    }
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {
         uiManager = GameObject.Find("UI Manager").GetComponent<UIManager>();
         delay = GameObject.Find("Level Manager").GetComponent<Delay>();
     }
-
     public void Lives()
     {
         playerLifeCount--;
@@ -23,6 +40,7 @@ public class PlayerHealth : MonoBehaviour
         if (playerLifeCount < 1)
         {
             uiManager.GetComponent<Canvas>().enabled = true;
+            LevelManager.knifeStop = true;
             delay.delayTime = false;
         }
     }

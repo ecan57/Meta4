@@ -245,6 +245,21 @@ MonoBehaviour:
   attackEnemySound: {fileID: 8300000, guid: a7c836565acb4194fa28b3382a80e922, type: 3}
   winSound: {fileID: 8300000, guid: a0af6966b56c3954eb74dc8f4487564c, type: 3}
   runDoorSound: {fileID: 8300000, guid: d0b1d5fd499ae974e9053dd04be1d18e, type: 3}
+  sounds:
+  - {fileID: 8300000, guid: a7c836565acb4194fa28b3382a80e922, type: 3}
+  - {fileID: 8300000, guid: 0d6461894562c614ea640cbc3c4f9e3a, type: 3}
+  - {fileID: 8300000, guid: d4d4289cabb62624584a9cf3138d9cac, type: 3}
+  - {fileID: 8300000, guid: 42b355b1a3da2b74bbd80eebf071fe29, type: 3}
+  - {fileID: 8300000, guid: ee64386de676014468e34483305e0331, type: 3}
+  - {fileID: 8300000, guid: c28aa89d54ca65b4493092c6837331d0, type: 3}
+  - {fileID: 8300000, guid: edf4934ab28700442b3bc1fb5cdd1f47, type: 3}
+  - {fileID: 8300000, guid: b01be95bc2f76aa4cac22c876958627d, type: 3}
+  - {fileID: 8300000, guid: 2cc8edd875e83f24fb3eb6422816c1ef, type: 3}
+  - {fileID: 8300000, guid: 97ecd257a7f1e224ea177d88119f8be5, type: 3}
+  - {fileID: 8300000, guid: de80d50468c63724cbe66dd6aa9a1210, type: 3}
+  - {fileID: 8300000, guid: d0b1d5fd499ae974e9053dd04be1d18e, type: 3}
+  - {fileID: 8300000, guid: 4c09c4a6e20a1d448936285ee03e2c52, type: 3}
+  - {fileID: 8300000, guid: a0af6966b56c3954eb74dc8f4487564c, type: 3}
 --- !u!82 &22800843
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2486,7 +2501,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1083169480}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.23, y: 4.18, z: 0}
+  m_LocalPosition: {x: -8.87, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3504,7 +3519,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1360365459}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.63, y: -1.65, z: 0}
+  m_LocalPosition: {x: 5.98, y: -2.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3599,6 +3614,12 @@ MonoBehaviour:
   door: {fileID: 2133270007}
   runText: {fileID: 1333464631}
   playerSpawnPos: {fileID: 1083169482}
+  knifePrefab: {fileID: 1068134270466393295, guid: fd519a6a5f2e34a4095a7f106baf40ab, type: 3}
+  spawnValues: {x: 10, y: 2.1}
+  startSpawn: 0
+  minSpawn: 0.5
+  maxSpawn: 5
+  startWait: 2
   count: 0
   canWin: 0
 --- !u!4 &1414251311
@@ -3740,7 +3761,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1438906492}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.56, y: -2.52, z: 0}
+  m_LocalPosition: {x: -4.46, y: -1.54, z: 0}
   m_LocalScale: {x: 0.73483, y: 0.73483, z: 0.73483}
   m_ConstrainProportionsScale: 0
   m_Children:

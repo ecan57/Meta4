@@ -20,7 +20,7 @@ public class Jump : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
+        //soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
     }
 
     // Update is called once per frame
@@ -58,7 +58,11 @@ public class Jump : MonoBehaviour
             doubleJump = true;
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse); //impulse: bi anda anýnda uygula
             jumpTime = startJumpTime;
-            soundManager.JumpSound();
+
+            //soundManager.JumpSound();
+            //soundManager.PlayAudio(SoundManager.instance.sounds[8]);
+            //soundManager.PlayAudio(soundManager.sounds[8]);
+            SoundManager.instance.PalyWithIndex(8);
         }
         if(Input.GetButtonDown("Jump") && doubleJump)
         {
