@@ -28,4 +28,8 @@ public class LoadDataScript : MonoBehaviour
     {
         SceneManager.LoadScene(0);
     }
+    public void Game()
+    {
+        SceneManager.LoadScene(2);
+    }
 }
