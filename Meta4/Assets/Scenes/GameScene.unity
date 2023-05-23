@@ -515,6 +515,9 @@ MonoBehaviour:
   nextFire: 0
   fireRate: 0.5
   muzzellEfect: {fileID: 8194992990867289333, guid: 99bc28c0d45f51c4fbac01080b73edc7, type: 3}
+  easyRate: 1
+  normalRate: 0.5
+  hardRate: 0.2
 --- !u!212 &216492522
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2270,6 +2273,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 966336550}
   m_CullTransparentMesh: 1
+--- !u!1 &1039191048
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1039191050}
+  - component: {fileID: 1039191049}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1039191049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039191048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87a29ee6fe7fff94e99f41b5de1186d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1039191050
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039191048}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1053981252
 GameObject:
   m_ObjectHideFlags: 0
@@ -3615,11 +3662,14 @@ MonoBehaviour:
   runText: {fileID: 1333464631}
   playerSpawnPos: {fileID: 1083169482}
   knifePrefab: {fileID: 1068134270466393295, guid: fd519a6a5f2e34a4095a7f106baf40ab, type: 3}
-  spawnValues: {x: 10, y: 2.1}
+  spawnValues: {x: 10, y: 2}
   startSpawn: 0
-  minSpawn: 0.5
-  maxSpawn: 5
+  minSpawn: 5
+  maxSpawn: 20
   startWait: 2
+  easySpawn: 20
+  normalSpawn: 5
+  hardSpawn: 1
   count: 0
   canWin: 0
 --- !u!4 &1414251311
@@ -3630,7 +3680,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1414251309}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.05, y: 4.11, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5667,6 +5717,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   winPanel: {fileID: 1945087301}
+  runText: {fileID: 1333464631}
 --- !u!212 &2133270010
 SpriteRenderer:
   m_ObjectHideFlags: 0

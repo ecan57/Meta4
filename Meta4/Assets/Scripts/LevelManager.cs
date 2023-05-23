@@ -21,6 +21,11 @@ public class LevelManager : MonoBehaviour
     public static bool knifeStop;
     private float xSpawn = 10f;
 
+    [Header("Mode Spawn")]
+    [SerializeField] float easySpawn;
+    [SerializeField] float normalSpawn;
+    [SerializeField] float hardSpawn;
+
     [Header ("Bool")]
 
     public int count;
@@ -36,9 +41,11 @@ public class LevelManager : MonoBehaviour
     }
     private void Start()
     {
+        maxSpawn = HardenedScript.instance.HardenedLevel(maxSpawn, easySpawn, normalSpawn, hardSpawn);
         //FriesSpawner();
         StartCoroutine(SpawnFries());
         StartCoroutine(CreateKnife());
+        canMove = true; //arada restratta karakter hareket etmiyor onu önlemek için ekledik
     }
 
     // Update is called once per frame

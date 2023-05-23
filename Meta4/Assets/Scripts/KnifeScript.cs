@@ -11,9 +11,15 @@ public class KnifeScript : MonoBehaviour
 
     private Rigidbody2D rb;
 
+    [Header("Mode Speed")]
+    [SerializeField] float easySpeed;
+    [SerializeField] float normalSpeed;
+    [SerializeField] float hardSpeed;
+
     // Start is called before the first frame update
     void Start()
     {
+        moveSpeed = HardenedScript.instance.HardenedLevel(moveSpeed, easySpeed, normalSpeed, hardSpeed);
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -28,15 +34,20 @@ public class KnifeScript : MonoBehaviour
         transform.Rotate(-transform.right * turnSpeed);
         rb.velocity = Vector2.left * moveSpeed;
     }
+ 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Player"))
         {
+            
             SoundManager.instance.PalyWithIndex(13);
             Instantiate(particle, collision.gameObject.transform.position, Quaternion.identity);
             Destroy(collision.gameObject);
             PlayerHealth.instance.Lives();
-            Delay.instance.StartDelayTime();
+            if(Delay.instance.delayTime) //býçakla ölüp gameover olunca tekrar canlanmayalým diye bu kontrolü yapýyoruz
+            {
+                Delay.instance.StartDelayTime();
+            }
             Movement.Cancel();
             Destroy(gameObject);
         }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1068134270466393296}
   m_Layer: 0
   m_Name: knife
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0073660016, y: -0.009207517}
+  m_Offset: {x: -0.09840563, y: -0.009207517}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -111,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.595804, y: 0.07650074}
+  m_Size: {x: 0.3842607, y: 0.07650074}
   m_EdgeRadius: 0
 --- !u!114 &1068134270466393292
 MonoBehaviour:
@@ -129,6 +129,9 @@ MonoBehaviour:
   moveSpeed: 5
   particle: {fileID: 1429954232896169632, guid: 83036083a4ebcd34f98131bd3cf6f4d2, type: 3}
   destroyLimit: -10
+  easySpeed: 0.5
+  normalSpeed: 5
+  hardSpeed: 10
 --- !u!50 &1068134270466393296
 Rigidbody2D:
   serializedVersion: 4
