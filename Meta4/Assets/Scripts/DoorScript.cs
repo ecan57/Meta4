@@ -12,7 +12,10 @@ public class DoorScript : MonoBehaviour
         {
             winPanel.SetActive(true) ;
             runText.SetActive(false);
-            SoundManager.instance.WinSound();
+            
+            //SoundManager.instance.WinSound();
+            SoundManager.instance.PlayWithIndex(13);
+            
             collision.gameObject.SetActive(false); //kapýya girince herþey duracak
         }
     }

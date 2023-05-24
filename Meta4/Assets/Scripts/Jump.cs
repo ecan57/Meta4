@@ -16,11 +16,13 @@ public class Jump : MonoBehaviour
     float jumpTime;
     bool isJumping;
     bool doubleJump;
+    [SerializeField] Animator anim;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         //soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -58,11 +60,12 @@ public class Jump : MonoBehaviour
             doubleJump = true;
             rb.AddForce(Vector2.up * jumpPower, ForceMode2D.Impulse); //impulse: bi anda anýnda uygula
             jumpTime = startJumpTime;
+            anim.SetBool("Jump", true);
 
             //soundManager.JumpSound();
             //soundManager.PlayAudio(SoundManager.instance.sounds[8]);
             //soundManager.PlayAudio(soundManager.sounds[8]);
-            SoundManager.instance.PalyWithIndex(8);
+            SoundManager.instance.PlayWithIndex(8);
         }
         if(Input.GetButtonDown("Jump") && doubleJump)
         {
@@ -86,5 +89,10 @@ public class Jump : MonoBehaviour
         {
             isJumping = false;
         }
+        if(Mathf.Approximately(rb.velocity.y, 0) && anim.GetBool("Jump"))
+        {
+            anim.SetBool("Jump", true);
+        }
+        Gravity();
     }
 }

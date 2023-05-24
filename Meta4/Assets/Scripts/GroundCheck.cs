@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
-    [SerializeField] SoundManager soundManager;
+    //[SerializeField] SoundManager soundManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
+        //soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            soundManager.LandSound();
+            //soundManager.LandSound();
+            SoundManager.instance.PlayWithIndex(10);
         }
     }
 }

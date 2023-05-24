@@ -7,19 +7,21 @@ public class EnemyScript : MonoBehaviour
     [SerializeField] float enemyAttackSpeed;
     [SerializeField] float xBoundry; //enemy prefabýnýn içinde enemy scriptinde boundry oluþtu ona platformun sýnýrýný verdik
     [SerializeField] float yBoundry;
-    LevelManager levelManager;
-    SoundManager soundManager;
-    UIManager uiManager;
+
+    //LevelManager levelManager;
+    //SoundManager soundManager;
+    //UIManager uiManager;
     Delay delayScript;
     PlayerHealth playerHealth;
+
     bool isAttacking;
 
     private void Awake()
     {
-        levelManager = GameObject.Find("Level Manager").GetComponent<LevelManager>();
-        soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
+        //levelManager = GameObject.Find("Level Manager").GetComponent<LevelManager>();
+        //soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
         delayScript = GameObject.Find("Level Manager").GetComponent<Delay>();
-        uiManager = GameObject.Find("UI Manager").GetComponent<UIManager>();
+        //uiManager = GameObject.Find("UI Manager").GetComponent<UIManager>();
         playerHealth = GameObject.Find("Level Manager").GetComponent<PlayerHealth>();
     }
     private void Update()
@@ -37,7 +39,8 @@ public class EnemyScript : MonoBehaviour
         //SpriteRenderer baþýndaki tiki kaldýrdýðýmýzda spwnpos görünmüyor
         while (!isAttacking)
         {
-            soundManager.AttackEnemySound();
+            //soundManager.AttackEnemySound();
+            SoundManager.instance.PlayWithIndex(0);
             isAttacking = true; //false olursasonsuz döngüye girer sahne tehliikeye girer . Her deðiþiklikten sonra sahneyi save etmelisin. While gibi döngüler dikkatli kulllanýlmalý
             //burada sadece her obje için bir kere ses verecek
         }
@@ -62,7 +65,8 @@ public class EnemyScript : MonoBehaviour
             {
                 delayScript.StartDelayTime();
             }
-            soundManager.DeadByEnemySound();
+            //soundManager.DeadByEnemySound();
+            SoundManager.instance.PlayWithIndex(2);
             //uiManager.GetComponent<Canvas>().enabled = true; //playerHealt.Lives ekleyince kaldýrdýk
             //levelManager.RespawnPlayer();//enemy çarptýðýnda da tekrar player oluþtur
         }

@@ -1,11 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class BackgroundMusic : MonoBehaviour
 {
     private AudioSource audioSource;
+
     public static BackgroundMusic instance; //singleton kullanýmý
+
     private void Awake()
     {
         audioSource = GetComponent<AudioSource>();
@@ -16,14 +16,16 @@ public class BackgroundMusic : MonoBehaviour
         else
         {
             Destroy(gameObject); //gameobject dediðimiz background music. Çalýþtýrýnca birden fazla varsa yok et.
-            Debug.Log("Sahnede birden fazla Background Music var");
+            //Debug.Log("Sahnede birden fazla Background Music var");
         }
         DontDestroyOnLoad(gameObject); // Gameoverdan sonra sürekli sürekli ayný müzik çalmasýn müzik kaldýðý yerden devam etsin diye yaptýk.
     }
+
     private void Update()
     {
         MuteMusic();
     }
+
     void MuteMusic()
     {
         if(PauseMenuScript.isPause)

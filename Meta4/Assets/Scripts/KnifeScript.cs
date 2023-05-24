@@ -1,13 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class KnifeScript : MonoBehaviour
 {
     [SerializeField] float turnSpeed;
     [SerializeField] float moveSpeed;
-    [SerializeField] ParticleSystem particle;
     [SerializeField] float destroyLimit;
+
+    [SerializeField] ParticleSystem particle;
+
+    [SerializeField] GameObject player;
 
     private Rigidbody2D rb;
 
@@ -28,7 +29,12 @@ public class KnifeScript : MonoBehaviour
     {
         if (transform.position.x < destroyLimit)
             Destroy(gameObject);
+
+        player = GameObject.FindGameObjectWithTag("Player");
+        if (player == null)
+            Destroy(gameObject);
     }
+
     private void FixedUpdate()
     {
         transform.Rotate(-transform.right * turnSpeed);
@@ -39,16 +45,21 @@ public class KnifeScript : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Player"))
         {
-            
-            SoundManager.instance.PalyWithIndex(13);
+            SoundManager.instance.PlayWithIndex(13);
+
             Instantiate(particle, collision.gameObject.transform.position, Quaternion.identity);
+
             Destroy(collision.gameObject);
+
             PlayerHealth.instance.Lives();
+
             if(Delay.instance.delayTime) //býçakla ölüp gameover olunca tekrar canlanmayalým diye bu kontrolü yapýyoruz
             {
                 Delay.instance.StartDelayTime();
             }
+
             Movement.Cancel();
+
             Destroy(gameObject);
         }
     }

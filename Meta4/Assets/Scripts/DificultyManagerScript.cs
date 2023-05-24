@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -7,6 +5,7 @@ public class DificultyManagerScript : MonoBehaviour
 {
     //HideInInspector burada public yapmamýz gereken ama unityde inspectorde kalablaýk yapmasýn diye koyuyoruz
     [HideInInspector] public bool easyMode, normalMode, hardMode;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,18 +22,26 @@ public class DificultyManagerScript : MonoBehaviour
     {
         easyMode = true;
         PlayerPrefs.SetInt("Easy Mode", easyMode ? 1 : 0);
+        Debug.Log("Esay");
         SceneManager.LoadScene(1);
+        LevelManager.countForWin = 1;
     }
+
     public void NormalMode()
     {
         normalMode = true;
         PlayerPrefs.SetInt("Normal Mode", normalMode ? 1 : 0);
+        Debug.Log("Normal");
         SceneManager.LoadScene(1);
+        LevelManager.countForWin = 2;
     }
+
     public void HardMode()
     {
-       hardMode = true;
+        hardMode = true;
         PlayerPrefs.SetInt("Hard Mode", hardMode ? 1 : 0);
+        Debug.Log("Hard");
         SceneManager.LoadScene(1);
+        LevelManager.countForWin = 3;
     }
 }

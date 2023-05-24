@@ -1,18 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq.Expressions;
 using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
     [SerializeField] AudioSource audioSource;
-    [SerializeField] AudioClip jumpSound;
-    [SerializeField] AudioClip landSound;
-    [SerializeField] AudioClip deadByEnemySound;
-    [SerializeField] AudioClip deadByFallSound;
-    [SerializeField] AudioClip attackEnemySound;
-    [SerializeField] AudioClip winSound;
-    [SerializeField] AudioClip runDoorSound;
+    //[SerializeField] AudioClip jumpSound;
+    //[SerializeField] AudioClip landSound;
+    //[SerializeField] AudioClip deadByEnemySound;
+    //[SerializeField] AudioClip deadByFallSound;
+    //[SerializeField] AudioClip attackEnemySound;
+    //[SerializeField] AudioClip winSound;
+    //[SerializeField] AudioClip runDoorSound;
     public AudioClip[] sounds; //bunu sen yap
 
     #region Singleton
@@ -21,14 +18,9 @@ public class SoundManager : MonoBehaviour
     private void Awake()
     {
         if (instance == null)
-        {
             instance = this;
-        }
         else
-        {
             Destroy(gameObject);
-            Debug.Log("Sahnede Fazla Sound Var");
-        } 
     }
     #endregion
 
@@ -37,15 +29,15 @@ public class SoundManager : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
     }
 
-    public void PlayAudio(AudioClip clip)
-    {
-        audioSource.PlayOneShot(clip);
-    } //kýsa yöntem için ikinci seçenek alttaki en iyi seçenek
+    //public void PlayAudio(AudioClip clip)
+    //{
+    //    audioSource.PlayOneShot(clip);
+    //} //kýsa yöntem için ikinci seçenek alttaki en iyi seçenek
     
-    public void PalyWithIndex(int index)
+    public void PlayWithIndex(int index)
     {
         audioSource.PlayOneShot(sounds[index]);
-        Debug.Log(index + ". index çalýyor");
+        //Debug.Log(index + ". index çalýyor");
     }
 
 
@@ -54,34 +46,34 @@ public class SoundManager : MonoBehaviour
     //    audioSource.PlayOneShot(jumpSound);
     //    Debug.Log("JUMP");
     //}
-    public void LandSound()
-    {
-        audioSource.PlayOneShot(landSound);
-        Debug.Log("LAND");
-    }
-    public void DeadByEnemySound()
-    {
-        audioSource.PlayOneShot(deadByEnemySound);
-        Debug.Log("DEAD BY ENEMY");
-    }
-    public void DeadByFallSound()
-    {
-        audioSource.PlayOneShot(deadByFallSound);
-        Debug.Log("DEAD FELL");
-    }
-    public void AttackEnemySound()
-    {
-        audioSource.PlayOneShot(attackEnemySound);
-        Debug.Log("ATTACK");
-    }
-    public void WinSound()
-    {
-        audioSource.PlayOneShot(winSound);
-        Debug.Log("WIN SOUND");
-    }
-    public void RunDoorSound()
-    {
-        audioSource.PlayOneShot(runDoorSound);
-        Debug.Log("RUN TO DO DOOR SOUND");
-    }
+    //public void LandSound()
+    //{
+    //    audioSource.PlayOneShot(landSound);
+    //    Debug.Log("LAND");
+    //}
+    //public void DeadByEnemySound()
+    //{
+    //    audioSource.PlayOneShot(deadByEnemySound);
+    //    Debug.Log("DEAD BY ENEMY");
+    //}
+    //public void DeadByFallSound()
+    //{
+    //    audioSource.PlayOneShot(deadByFallSound);
+    //    Debug.Log("DEAD FELL");
+    //}
+    //public void AttackEnemySound()
+    //{
+    //    audioSource.PlayOneShot(attackEnemySound);
+    //    Debug.Log("ATTACK");
+    //}
+    //public void WinSound()
+    //{
+    //    audioSource.PlayOneShot(winSound);
+    //    Debug.Log("WIN SOUND");
+    //}
+    //public void RunDoorSound()
+    //{
+    //    audioSource.PlayOneShot(runDoorSound);
+    //    Debug.Log("RUN TO DO DOOR SOUND");
+    //}
 }

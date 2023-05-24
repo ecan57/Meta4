@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -25,6 +23,13 @@ public class UIManager : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         canvas.enabled = false;
         ScoreManagerScript.score = 0;
+        if (PlayerPrefs.HasKey("Easy Mode"))
+            LevelManager.countForWin = 1;
+        else if (PlayerPrefs.HasKey("Normal Mode"))
+            LevelManager.countForWin = 2;
+        else if (PlayerPrefs.HasKey("Hard Mode"))
+            LevelManager.countForWin = 3;
+
         LevelManager.knifeStop = false;
     }
     public void MenuButton()

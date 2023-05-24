@@ -7,13 +7,17 @@ public class GunScript : MonoBehaviour
 {
     Vector2 direction; 
     Vector2 target;
+
     [SerializeField] GameObject bulletPrefab;
-    [SerializeField] Transform bulletSpawnPos;
     [SerializeField] GameObject gunLight;
-    public bool isClose;
+
+    [SerializeField] Transform bulletSpawnPos;
+    [SerializeField] ParticleSystem muzzellEfect;
+
     [SerializeField] private float nextFire;
     [SerializeField] private float fireRate;
-    [SerializeField] ParticleSystem muzzellEfect;
+
+    public bool isClose;
 
     [Header("Mode Rate")]
     [SerializeField] float easyRate;
@@ -51,13 +55,9 @@ public class GunScript : MonoBehaviour
     void GunLight()
     {
         if (isClose)
-        {
             gunLight.GetComponent<SpriteRenderer>().color = Color.red;
-        }
         else
-        {
             gunLight.GetComponent<SpriteRenderer>().color= Color.green;
-        }
     }
     public void Fire()
     {
