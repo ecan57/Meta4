@@ -31,6 +31,7 @@ public class KnifeScript : MonoBehaviour
             Destroy(gameObject);
 
         player = GameObject.FindGameObjectWithTag("Player");
+        
         if (player == null)
             Destroy(gameObject);
     }
@@ -54,9 +55,7 @@ public class KnifeScript : MonoBehaviour
             PlayerHealth.instance.Lives();
 
             if(Delay.instance.delayTime) //býçakla ölüp gameover olunca tekrar canlanmayalým diye bu kontrolü yapýyoruz
-            {
                 Delay.instance.StartDelayTime();
-            }
 
             Movement.Cancel();
 

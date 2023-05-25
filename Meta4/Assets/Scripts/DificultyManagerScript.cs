@@ -25,6 +25,7 @@ public class DificultyManagerScript : MonoBehaviour
         Debug.Log("Esay");
         SceneManager.LoadScene(1);
         LevelManager.countForWin = 1;
+        LevelManager.level = 0;
     }
 
     public void NormalMode()
@@ -34,6 +35,7 @@ public class DificultyManagerScript : MonoBehaviour
         Debug.Log("Normal");
         SceneManager.LoadScene(1);
         LevelManager.countForWin = 2;
+        LevelManager.level = 0;
     }
 
     public void HardMode()
@@ -43,5 +45,6 @@ public class DificultyManagerScript : MonoBehaviour
         Debug.Log("Hard");
         SceneManager.LoadScene(1);
         LevelManager.countForWin = 3;
+        LevelManager.level = 0;
     }
 }

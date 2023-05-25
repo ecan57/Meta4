@@ -8,16 +8,19 @@ public class UIManager : MonoBehaviour
     [SerializeField] TextMeshProUGUI highScoreText;
 
     Canvas canvas;
+
     private void Start()
     {
         canvas = GetComponent<Canvas>();    
     }
+
     private void Update()
     {
         scoreText.text = "Your Score : " + ScoreManagerScript.score.ToString();
         ScoreManagerScript.highScore = PlayerPrefs.GetInt("High Score"); //"ScoreManagerScriptinde "High Score" nasýl yazýldýysa burada da öyle olmalý"
         highScoreText.text = "Your High Score : " + ScoreManagerScript.highScore.ToString();
     }
+
     public void RestartButton()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
@@ -32,6 +35,7 @@ public class UIManager : MonoBehaviour
 
         LevelManager.knifeStop = false;
     }
+
     public void MenuButton()
     {
         SceneManager.LoadScene(0);

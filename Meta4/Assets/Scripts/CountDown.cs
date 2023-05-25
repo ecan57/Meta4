@@ -1,12 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CountDown : MonoBehaviour
 {
     [SerializeField] float duration; //ne kadar sürede dolacaðý imagein 
-    [SerializeField] Image cooldownImage; 
+
+    [SerializeField] Image cooldownImage;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +18,7 @@ public class CountDown : MonoBehaviour
     {
         Timer();
     }
+
     void Timer()
     {
         if(Movement.dashed) //dashed true ise

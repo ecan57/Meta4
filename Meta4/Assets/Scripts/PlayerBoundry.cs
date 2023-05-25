@@ -1,13 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerBoundry : MonoBehaviour
 {
     [SerializeField] float horizontalBoundry;
+
     float xMove; //kapalý ifler yerine Mathf.Clamp kullandýk
     //y ekseni içimn de yapabilirsin
-    
 
     // Update is called once per frame
     void Update()

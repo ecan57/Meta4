@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,24 +8,17 @@ public class OptionsManagerScript : MonoBehaviour
     [SerializeField] Toggle windowed;
     [SerializeField] Slider volumeSlider;
     [SerializeField] TextMeshProUGUI volumeText;
+    
     private void Awake()
     {
         if(!PlayerPrefs.HasKey("Mute"))
-        {
             PlayerPrefs.SetInt("Mute", 0);
-        }
         else
-        {
             LoadMuteToggle();
-        }
         if (!PlayerPrefs.HasKey("Windowed"))
-        {
             PlayerPrefs.SetInt("Windowed", 0);
-        }
         else
-        {
             LoadWindowedToggle();
-        }
     }
 
     private void Update()
@@ -50,26 +40,18 @@ public class OptionsManagerScript : MonoBehaviour
     {
         PlayerPrefs.SetInt("Mute", mute.isOn ? 1 : 0);
         if(mute.isOn )
-        {
             AudioListener.pause = true;
-        }
         else
-        {
             AudioListener.pause = false;
-        }
     }
 
     public void WindowedToggle()
     {
         PlayerPrefs.SetInt("Windowed", windowed.isOn ? 1 : 0);
         if (!windowed.isOn )
-        {
             Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen;
-        }
         else
-        {
             Screen.fullScreenMode = FullScreenMode.Windowed;
-        }
     }
 
     private void LoadVolume() //Sliderý kontrol ediyor

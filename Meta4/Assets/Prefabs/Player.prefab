@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   gameoverText: {fileID: 0}
+  anim: {fileID: 0}
   dashAmount: 60
   dashCoolDown: 2.5
   dashTime: 0.2
@@ -143,13 +144,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7859f20e21be23a4f9541ae932260fdb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpPower: 3
-  radius: 0.3
+  anim: {fileID: 0}
   feetPos: {fileID: 7627799213180131931}
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  soundManager: {fileID: 0}
+  jumpPower: 2
+  radius: 0.3
   startJumpTime: 0.2
 --- !u!70 &6250252075465296168
 CapsuleCollider2D:

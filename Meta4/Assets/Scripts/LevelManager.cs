@@ -32,13 +32,16 @@ public class LevelManager : MonoBehaviour
     public bool canWin;
     public static bool canMove = true;
     public static int countForWin;
+    public static int level;
 
     //private SoundManager soundManager;
     // Start is called before the first frame update
     private void Awake()
     {
-        PlayerSpawner();
+        //PlayerSpawner();
         //soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
+        SpawnPlayer();
+        level++;
     }
 
     private void Start()
@@ -94,19 +97,30 @@ public class LevelManager : MonoBehaviour
         {
             canWin = true;
             door.SetActive(true);
-            knifeStop = true;
+            knifeStop = false;
             runText.SetActive(true);
             //soundManager.RunDoorSound();
             SoundManager.instance.PlayWithIndex(11);
         }
+        
         yield return new WaitForSeconds(1.5f);
+        
         if (count < countForWin)
-        {
             FriesSpawner();
-        }
     }
+
     public void FriesSpawnerCourotine()
     {
         StartCoroutine(SpawnFries());
+    }
+    void SpawnPlayer()
+    {
+        StartCoroutine(PlayerSpawnerWait());
+    }
+
+    IEnumerator PlayerSpawnerWait()
+    {
+        yield return new WaitForSeconds(1);
+        PlayerSpawner();
     }
 }

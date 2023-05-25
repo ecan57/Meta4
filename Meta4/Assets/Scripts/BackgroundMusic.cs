@@ -31,12 +31,12 @@ public class BackgroundMusic : MonoBehaviour
         if(PauseMenuScript.isPause)
         {
             audioSource.mute = true;
-            Debug.Log("Mute Music");
+            //Debug.Log("Mute Music");
         }
         else
         {
             audioSource.mute = false;
-            Debug.Log("Play Music");
+            //Debug.Log("Play Music");
         }
     }
 }

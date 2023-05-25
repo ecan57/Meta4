@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class GunScript : MonoBehaviour
@@ -28,6 +25,7 @@ public class GunScript : MonoBehaviour
     {
         fireRate = HardenedScript.instance.HardenedLevel(fireRate, easyRate, normalRate, hardRate);
     }
+
     void Update()
     {
         GunDirection();
@@ -37,6 +35,7 @@ public class GunScript : MonoBehaviour
         //    BulletSpawn();
         //} //GunLight() ekleyince kaldýrdýk
     }
+
     void GunDirection()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
@@ -47,11 +46,13 @@ public class GunScript : MonoBehaviour
             transform.right = -direction;
         }
     }
+
     void BulletSpawn()
     {
         Instantiate(bulletPrefab, bulletSpawnPos.position, transform.rotation);
         Instantiate(muzzellEfect, bulletSpawnPos.position, Quaternion.identity);
     }
+
     void GunLight()
     {
         if (isClose)
@@ -59,6 +60,7 @@ public class GunScript : MonoBehaviour
         else
             gunLight.GetComponent<SpriteRenderer>().color= Color.green;
     }
+
     public void Fire()
     {
         if (Time.time > nextFire)

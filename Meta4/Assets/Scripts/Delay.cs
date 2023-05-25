@@ -1,11 +1,12 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Delay : MonoBehaviour
 {
     LevelManager levelManager;
+
     [SerializeField] float delayTimer; //unity üzerinde istediðimiz zamaný verebilmek için ekledik
+
     public bool delayTime = true;
 
     #region Singleton
@@ -14,14 +15,9 @@ public class Delay : MonoBehaviour
     private void Awake()
     {
         if (instance == null)
-        {
             instance = this;
-        }
         else
-        {
             Destroy(gameObject);
-            Debug.Log("");
-        }
     }
     #endregion
 
@@ -35,6 +31,7 @@ public class Delay : MonoBehaviour
     {
         StartCoroutine(DelayNewTime()); //bu fonksiyonun kendisini direk çaðiramadýðýmýz için IEnumeratorden dolayý, yeni bir fonksiyon oluþturup öyle çaðýrýyoruz
     }
+
     IEnumerator DelayNewTime()
     {
         yield return new WaitForSeconds(delayTimer);

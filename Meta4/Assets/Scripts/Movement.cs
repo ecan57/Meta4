@@ -22,13 +22,13 @@ public class Movement : MonoBehaviour
     public static bool dashed;
 
     [SerializeField] GameObject gameoverText;
+    [SerializeField] Animator anim;
 
     [SerializeField] float dashAmount;
     [SerializeField] float dashCoolDown;
     [SerializeField] float dashTime;
     [SerializeField] float playerYBoundry;
 
-    [SerializeField] Animator anim;
 
     private void Awake()
     {
@@ -37,8 +37,8 @@ public class Movement : MonoBehaviour
         //uiManager = GameObject.Find("UI Manager").GetComponent<UIManager>();
         delayScript = GameObject.Find("Level Manager").GetComponent<Delay>();
         playerHealth = GameObject.Find("Level Manager").GetComponent<PlayerHealth>();
+        
         anim = GetComponent<Animator>();
-
         tr = GetComponent<TrailRenderer>();
     }
 
@@ -47,6 +47,7 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>(); //inspector penceresinde playerýn rigidboysini alýyor oyunu çalýþtýrýnca
         spriteRenderer = GetComponent<SpriteRenderer>();
+
         Cancel();
     }
 
@@ -62,6 +63,7 @@ public class Movement : MonoBehaviour
     {
         if(isDashing)
             return;
+
         if(LevelManager.canMove)
         {
             horizontalMove = Input.GetAxis("Horizontal");

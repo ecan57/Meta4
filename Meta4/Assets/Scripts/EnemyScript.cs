@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
@@ -57,7 +55,7 @@ public class EnemyScript : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            Debug.Log("Game Over");
+            //Debug.Log("Game Over");
             Destroy(collision.gameObject);
             Movement.Cancel();
             playerHealth.Lives();

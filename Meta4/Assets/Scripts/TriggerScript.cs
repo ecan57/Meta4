@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class TriggerScript : MonoBehaviour
@@ -8,11 +6,14 @@ public class TriggerScript : MonoBehaviour
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] Transform spawnPos;
     //[SerializeField] float enemySpeed;
+
     bool moveEnemy = false;
+
     private void FixedUpdate()
     {
         MoveEnemy();
     }
+
     void MoveEnemy()
     {
         if (moveEnemy)
@@ -22,20 +23,21 @@ public class TriggerScript : MonoBehaviour
             moveEnemy = false;
         }
     }
+
     void SpawnEnemy()
     {
         //enemy kaldýrdýk spawnpos ekledik onun yerine
         Instantiate(enemyPrefab, spawnPos.position, enemyPrefab.transform.rotation);
         //Instantiate maliyetli bir fonksiyondur dikkatli kullanýlmalý. Sürekli oluþturmak yerine oluþturulan nesneleri yok etmek yerine SetActive kapatýp havuza toplayýp sonra ihtiyaç olunca tekrar kullanýlabilir.
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Player")) 
-        {
+        if (collision.gameObject.CompareTag("Player"))
             moveEnemy = true;
-        }
         //Debug.Log(collision.gameObject.name + " Objesi giriþ yaptý.");
     }
+
     //private void OnTriggerStay2D(Collider2D collision)
     //{
     //    Debug.Log(collision.gameObject.name + " Objesi trigger içinde");

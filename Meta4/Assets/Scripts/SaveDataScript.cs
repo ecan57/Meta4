@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,20 +12,21 @@ public class SaveDataScript : MonoBehaviour
     private void Start()
     {
         if(PlayerPrefs.HasKey("Check"))
-        {
             check.isOn = PlayerPrefs.GetInt("Check") == 1;
-        }
     }
+
     public void Save()
     {
         PlayerPrefs.SetString("Name", textBox.text);
         PlayerPrefs.SetInt("Check", check.isOn ? 1 : 0);
         infoText.text = "Your Data Saved.";
     }
+
     public void Next()
     {
         SceneManager.LoadScene(1);
     }
+
     public void Default()
     {
         PlayerPrefs.DeleteAll(); //kaydettiðin herþeyi siler playerprefsteki

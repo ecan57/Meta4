@@ -1,11 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class DetectScript : MonoBehaviour
 {
     private GunScript gun;
+
     private void Awake()
     {
         gun = GameObject.Find("Gun").GetComponent<GunScript>();
@@ -23,9 +21,7 @@ public class DetectScript : MonoBehaviour
     {
         //turrent ateþ etmeyi býrakacak
         if (collision.gameObject.CompareTag("Player"))
-        {
             gun.isClose = false;
-        }
     }
     
 }
