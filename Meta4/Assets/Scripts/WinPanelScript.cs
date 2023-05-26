@@ -14,7 +14,8 @@ public class WinPanelScript : MonoBehaviour
     public void NextLevel() //ismi restrttý deðiþtirdik
     {
         int scorePoints = ScoreManagerScript.score;
-        LevelManager.countForWin++; //next levele her geçiþimizde birer birer frieslar artacak
+        CountManagerScript.instance.countForWin++; //next levele her geçiþimizde birer birer frieslar artacak
+        CountManagerScript.instance.level++;
         scoreText.text = scorePoints.ToString();
 
         SceneManager.LoadScene(1);

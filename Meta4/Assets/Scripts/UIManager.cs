@@ -27,11 +27,11 @@ public class UIManager : MonoBehaviour
         canvas.enabled = false;
         ScoreManagerScript.score = 0;
         if (PlayerPrefs.HasKey("Easy Mode"))
-            LevelManager.countForWin = 1;
+            CountManagerScript.instance.countForWin = 1;
         else if (PlayerPrefs.HasKey("Normal Mode"))
-            LevelManager.countForWin = 2;
+            CountManagerScript.instance.countForWin = 2;
         else if (PlayerPrefs.HasKey("Hard Mode"))
-            LevelManager.countForWin = 3;
+            CountManagerScript.instance.countForWin = 3;
 
         LevelManager.knifeStop = false;
     }

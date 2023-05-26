@@ -31,18 +31,30 @@ public class LevelManager : MonoBehaviour
     public int count;
     public bool canWin;
     public static bool canMove = true;
-    public static int countForWin;
-    public static int level;
+
+    #region Singleton
+    public static LevelManager instance;//singleton
+
+    private void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else
+            Destroy(gameObject);
+
+        SpawnPlayer();
+    }
+    #endregion
 
     //private SoundManager soundManager;
     // Start is called before the first frame update
-    private void Awake()
-    {
-        //PlayerSpawner();
-        //soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
-        SpawnPlayer();
-        level++;
-    }
+    //private void Awake()
+    //{
+    //    //PlayerSpawner();
+    //    //soundManager = GameObject.Find("Sound Manager").GetComponent<SoundManager>();
+    //    SpawnPlayer();
+    //    //CountManagerScript.instance.level++;
+    //}
 
     private void Start()
     {
@@ -93,7 +105,7 @@ public class LevelManager : MonoBehaviour
 
     public IEnumerator SpawnFries()
     {
-        if (count == countForWin)
+        if (count == CountManagerScript.instance.countForWin)
         {
             canWin = true;
             door.SetActive(true);
@@ -105,7 +117,7 @@ public class LevelManager : MonoBehaviour
         
         yield return new WaitForSeconds(1.5f);
         
-        if (count < countForWin)
+        if (count < CountManagerScript.instance.countForWin)
             FriesSpawner();
     }
 

@@ -27,12 +27,12 @@ public class KnifeScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.position.x < destroyLimit)
-            Destroy(gameObject);
-
         player = GameObject.FindGameObjectWithTag("Player");
         
-        if (player == null)
+        if (player == null || CountManagerScript.instance.EndCount())
+            Destroy(gameObject);
+
+        if (transform.position.x < destroyLimit)
             Destroy(gameObject);
     }
 
@@ -44,20 +44,24 @@ public class KnifeScript : MonoBehaviour
  
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Player") && LevelManager.canMove)
         {
             SoundManager.instance.PlayWithIndex(13);
 
             Instantiate(particle, collision.gameObject.transform.position, Quaternion.identity);
 
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
 
-            PlayerHealth.instance.Lives();
+            Animator anim = collision.gameObject.GetComponent<Animator>();
+            LevelManager.canMove = false;
+            anim.SetTrigger("Die");
 
-            if(Delay.instance.delayTime) //býçakla ölüp gameover olunca tekrar canlanmayalým diye bu kontrolü yapýyoruz
-                Delay.instance.StartDelayTime();
+            //PlayerHealth.instance.Lives();
 
-            Movement.Cancel();
+            //if(Delay.instance.delayTime) //býçakla ölüp gameover olunca tekrar canlanmayalým diye bu kontrolü yapýyoruz
+            //    Delay.instance.StartDelayTime();
+
+            //Movement.Cancel();
 
             Destroy(gameObject);
         }

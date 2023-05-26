@@ -6,7 +6,7 @@ public class DoorScript : MonoBehaviour
     [SerializeField] GameObject runText;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player"))
+        if(collision.gameObject.CompareTag("Player") && LevelManager.canMove)
         {
             winPanel.SetActive(true) ;
             runText.SetActive(false);

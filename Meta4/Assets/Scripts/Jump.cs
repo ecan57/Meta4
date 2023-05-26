@@ -35,7 +35,7 @@ public class Jump : MonoBehaviour
         Gravity();
     }
 
-    private bool IsGrounded() //dokunuyorsa true ya da false döndürecek dokunmazsa zýplamayacak //havada zýplmasýný engelledik
+    public bool IsGrounded() //dokunuyorsa true ya da false döndürecek dokunmazsa zýplamayacak //havada zýplmasýný engelledik
     {
         return Physics2D.OverlapCircle(feetPos.position, radius, layerMask);
     }

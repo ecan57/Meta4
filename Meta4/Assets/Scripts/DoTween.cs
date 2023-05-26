@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using Sequence = DG.Tweening.Sequence;
@@ -12,7 +10,7 @@ public class DoTween : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        levelText.text = "Level " + LevelManager.level;
+        levelText.text = "Level " + CountManagerScript.instance.level;
         Sequence mySequence = DOTween.Sequence();
         mySequence.Append(transform.DOScale(new Vector3(2, 2, 1), .5f));
         mySequence.Append(transform.DOScale(new Vector3(0, 0, 1), .5f));

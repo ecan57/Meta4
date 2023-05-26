@@ -24,8 +24,8 @@ public class DificultyManagerScript : MonoBehaviour
         PlayerPrefs.SetInt("Easy Mode", easyMode ? 1 : 0);
         Debug.Log("Esay");
         SceneManager.LoadScene(1);
-        LevelManager.countForWin = 1;
-        LevelManager.level = 0;
+        CountManagerScript.instance.countForWin = 1;
+        CountManagerScript.instance.level = 1;
     }
 
     public void NormalMode()
@@ -34,8 +34,8 @@ public class DificultyManagerScript : MonoBehaviour
         PlayerPrefs.SetInt("Normal Mode", normalMode ? 1 : 0);
         Debug.Log("Normal");
         SceneManager.LoadScene(1);
-        LevelManager.countForWin = 2;
-        LevelManager.level = 0;
+        CountManagerScript.instance.countForWin = 2;
+        CountManagerScript.instance.level = 1;
     }
 
     public void HardMode()
@@ -44,7 +44,7 @@ public class DificultyManagerScript : MonoBehaviour
         PlayerPrefs.SetInt("Hard Mode", hardMode ? 1 : 0);
         Debug.Log("Hard");
         SceneManager.LoadScene(1);
-        LevelManager.countForWin = 3;
-        LevelManager.level = 0;
+        CountManagerScript.instance.countForWin = 3;
+        CountManagerScript.instance.level = 1;
     }
 }

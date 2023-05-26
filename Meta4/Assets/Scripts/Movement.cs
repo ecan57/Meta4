@@ -14,12 +14,16 @@ public class Movement : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer spriteRenderer;
 
+    private Jump jump;
+
     public float moveSpeed;
     private float horizontalMove;
 
     public static bool canDash = true;
     public static bool isDashing = false;
     public static bool dashed;
+
+    public static bool bloking;
 
     [SerializeField] GameObject gameoverText;
     [SerializeField] Animator anim;
@@ -38,6 +42,8 @@ public class Movement : MonoBehaviour
         delayScript = GameObject.Find("Level Manager").GetComponent<Delay>();
         playerHealth = GameObject.Find("Level Manager").GetComponent<PlayerHealth>();
         
+        jump = GetComponent<Jump>();
+
         anim = GetComponent<Animator>();
         tr = GetComponent<TrailRenderer>();
     }
@@ -57,6 +63,7 @@ public class Movement : MonoBehaviour
         MovementAction();
         PlayerDestroyer();
         StartDash();
+        Block();
     }
 
     void MovementAction()
@@ -72,6 +79,10 @@ public class Movement : MonoBehaviour
             SpriteFlip(horizontalMove);
 
             anim.SetFloat("Move", Mathf.Abs(horizontalMove));
+        }
+        else
+        {
+            rb.velocity = new Vector2(0, rb.velocity.y);
         }
     }
 
@@ -150,6 +161,34 @@ public class Movement : MonoBehaviour
         isDashing = false;
         dashed = false;
         Jump.fallGravityScale = 15;
+        LevelManager.canMove = true;
     }
 
+    public void Die()
+    {
+        Destroy(gameObject);
+        PlayerHealth.instance.Lives();
+        Cancel();
+        if(Delay.instance.delayTime)
+        {
+            Delay.instance.StartDelayTime();
+        }
+    }
+
+    void Block()
+    {
+        if(Input.GetMouseButton(0) && jump.IsGrounded()) //mousebutton 0 --> sol klik basmaya devam et
+        {
+            anim.SetBool("Shield", true);
+            bloking = true;
+            rb.velocity = Vector2.zero; //hareketi sýfýrlar
+            LevelManager.canMove = false;
+        }
+        else if(Input.GetMouseButtonUp(0) && jump.IsGrounded())
+        {
+            anim.SetBool("Shield", false);
+            bloking = false;
+            LevelManager.canMove = true;
+        }
+    }
 }

@@ -25,7 +25,7 @@ public class BulletScript : MonoBehaviour
     private void Update()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        if(player == null)
+        if(player == null || CountManagerScript.instance.EndCount())
             Destroy(gameObject);
     }
 
@@ -41,19 +41,22 @@ public class BulletScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
             Instantiate(groundParticle, transform.position, Quaternion.identity);
         
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player") && LevelManager.canMove)
         {
-            Destroy(collision.gameObject);
+            Animator anim = collision.gameObject.GetComponent<Animator>();
+            LevelManager.canMove = false;
+            anim.SetTrigger("Die");
+            //Destroy(collision.gameObject);
 
-            Movement.Cancel();
+            //Movement.Cancel();
 
-            playerHealthScript.Lives();
+            //playerHealthScript.Lives();
 
             Instantiate(playerParticle, transform.position, Quaternion.identity);
             Instantiate(playerHitParticle, transform.position, Quaternion.identity);
 
-            if (delayScript.delayTime )
-                delayScript.StartDelayTime();
+            //if (delayScript.delayTime )
+            //    delayScript.StartDelayTime();
         }
     }
 

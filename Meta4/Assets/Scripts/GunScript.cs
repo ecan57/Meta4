@@ -63,7 +63,7 @@ public class GunScript : MonoBehaviour
 
     public void Fire()
     {
-        if (Time.time > nextFire)
+        if (Time.time > nextFire && LevelManager.canMove)
         {
             nextFire = Time.time + fireRate;
             BulletSpawn();
