@@ -12,6 +12,7 @@ public class BulletScript : MonoBehaviour
     [SerializeField] ParticleSystem groundParticle;
     [SerializeField] ParticleSystem playerParticle;
     [SerializeField] ParticleSystem playerHitParticle;
+    [SerializeField] ParticleSystem playerBlockParticle;
 
     [SerializeField] GameObject player;
 
@@ -41,7 +42,7 @@ public class BulletScript : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
             Instantiate(groundParticle, transform.position, Quaternion.identity);
         
-        if (collision.gameObject.CompareTag("Player") && LevelManager.canMove)
+        if (collision.gameObject.CompareTag("Player") && LevelManager.canMove && !Movement.bloking)
         {
             Animator anim = collision.gameObject.GetComponent<Animator>();
             LevelManager.canMove = false;
@@ -57,6 +58,10 @@ public class BulletScript : MonoBehaviour
 
             //if (delayScript.delayTime )
             //    delayScript.StartDelayTime();
+        }
+        else if(Movement.bloking)
+        {
+            Instantiate(playerBlockParticle, transform.position, Quaternion.identity);
         }
     }
 

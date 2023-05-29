@@ -7,6 +7,7 @@ public class KnifeScript : MonoBehaviour
     [SerializeField] float destroyLimit;
 
     [SerializeField] ParticleSystem particle;
+    [SerializeField] ParticleSystem blockingParticle;
 
     [SerializeField] GameObject player;
 
@@ -44,7 +45,11 @@ public class KnifeScript : MonoBehaviour
  
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.CompareTag("Player") && LevelManager.canMove)
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.CompareTag("Player") && LevelManager.canMove && !Movement.bloking)
         {
             SoundManager.instance.PlayWithIndex(13);
 
@@ -63,7 +68,10 @@ public class KnifeScript : MonoBehaviour
 
             //Movement.Cancel();
 
-            Destroy(gameObject);
+        }
+        else if(collision.gameObject.CompareTag("Player") && Movement.bloking)
+        {
+            Instantiate(blockingParticle, gameObject.transform.position, Quaternion.identity);
         }
     }
 }

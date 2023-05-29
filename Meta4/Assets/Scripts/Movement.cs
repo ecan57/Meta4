@@ -24,6 +24,7 @@ public class Movement : MonoBehaviour
     public static bool dashed;
 
     public static bool bloking;
+    public static bool died;
 
     [SerializeField] GameObject gameoverText;
     [SerializeField] Animator anim;
@@ -122,7 +123,7 @@ public class Movement : MonoBehaviour
             StartCoroutine(Dash());
             SoundManager.instance.PlayWithIndex(14);
         }
-        horizontalMove = Input.GetAxis("Horizontal");
+        //horizontalMove = Input.GetAxis("Horizontal");
     }
 
     IEnumerator Dash() //fýrlama //sýralama önemli
@@ -162,6 +163,7 @@ public class Movement : MonoBehaviour
         dashed = false;
         Jump.fallGravityScale = 15;
         LevelManager.canMove = true;
+        died = false;
     }
 
     public void Die()
@@ -177,18 +179,23 @@ public class Movement : MonoBehaviour
 
     void Block()
     {
-        if(Input.GetMouseButton(0) && jump.IsGrounded()) //mousebutton 0 --> sol klik basmaya devam et
+        if(Input.GetMouseButton(0) && jump.IsGrounded() && !died) //mousebutton 0 --> sol klik basmaya devam et
         {
             anim.SetBool("Shield", true);
             bloking = true;
             rb.velocity = Vector2.zero; //hareketi sýfýrlar
             LevelManager.canMove = false;
         }
-        else if(Input.GetMouseButtonUp(0) && jump.IsGrounded())
+        else if(Input.GetMouseButtonUp(0) && jump.IsGrounded() && !died)
         {
             anim.SetBool("Shield", false);
             bloking = false;
             LevelManager.canMove = true;
         }
+    }
+
+    public void Died()
+    {
+        died = true;
     }
 }
